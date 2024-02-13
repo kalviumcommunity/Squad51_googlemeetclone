@@ -1,0 +1,12 @@
+{
+  "name": "squad51_googlemeetclone",
+  "version": "1.0.0",
+  "description": "Name of my project- simple clone of Google Meet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
