@@ -1,9 +1,11 @@
 var express = require("express");
-require("dotenv").config(); // Don't forget to invoke the config method
+require("dotenv").config(); 
 var mongoose = require("mongoose");
 const {connectdb, isConnected} = require('./dbcom.js');
+const bodyParser=require('body-parser')
+const { getRouter, postRouter, deleteRouter, putRouter } = require('./gmeet/gmeet.route.js')
 var app = express();
-
+app.use(bodyParser.json())
 app.get("/ping", (req, res) => {
     res.send("pong");
 });
@@ -12,6 +14,10 @@ app.get('/home', (req, res) => {
       message: isConnected() ? 'Database is connected' : 'disconnected'
     })
 });
+app.use('/',getRouter);
+app.use('/',postRouter);
+app.use('/',deleteRouter);
+app.use('/',putRouter);
 app.get("/", (req, res) => {
     res.send("Hello guys");
 });
@@ -19,11 +25,5 @@ app.get("/", (req, res) => {
 app.listen(3000,async() => {
     await connectdb();
     console.log("Server is running on port 3000");
-    // mongoose.connection.on('connected', () => {
-    //     console.log("Connected to MongoDB");
-    // });
-    // mongoose.connection.on('error', (err) => {
-    //     console.error("MongoDB connection error:", err);
-    // });
 });
 
