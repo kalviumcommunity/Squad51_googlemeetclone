@@ -1,11 +1,15 @@
+
 import './App.css'
-import Frontpage from './Frontpage'
+import DoorList from '../backfront/Connection'
+
 
 function App() {
 
   return (
     <>
-      <Frontpage/>
+    <DoorList/>
+    
+
     </>
   )
 }
