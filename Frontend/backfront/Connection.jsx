@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom';
 
 function DoorList() {
   const [data, setData] = useState([]);
@@ -53,6 +54,7 @@ function DoorList() {
           ))}
         </tbody>
       </table>
+      <Link to='/Add'><button>Add</button></Link>
     </div>
   );
 }
