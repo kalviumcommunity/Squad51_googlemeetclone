@@ -19,7 +19,7 @@ function Frontpage() {
   return (
       <div>
           {data.map((datas, id) => (
-              <div key={datas.id} style={containerStyle}>
+              <div key={id} style={containerStyle}>
                   <p style={textStyle}>{datas.id}</p>
                   <p style={textStyle}>{datas.name}</p>
                   <p style={textStyle}>{datas.lastname}</p>
