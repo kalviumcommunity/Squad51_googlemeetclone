@@ -30,11 +30,17 @@ function DoorList() {
     console.log("Update user with ID:", userId);
   };
 
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:3000/deleteuser/${id}`)
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
-  };
+
+
+const handleDelete = (id) => {
+  axios.delete(`http://localhost:3000/deleteuser/${id}`)
+    .then(res => {
+      console.log(res);
+      window.location.reload();
+    })
+    .catch(err => console.log(err));
+};
+
 
   return (
     <div>
