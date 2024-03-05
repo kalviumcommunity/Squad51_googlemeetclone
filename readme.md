@@ -1,6 +1,6 @@
 Name of my project- simple clone of Google Meet
 
-In this project, I will be doing a simple clone of Google Meet where you can start a meeting and talk to each other and when you click the recording button the meeting will recorded and it will get stored in the certain data base and other feature will add an up....
+Welcome to the Links Storing App! This application allows users to store and manage their favorite links in a convenient way. Whether you want to save interesting articles, useful resources, or any other web content, this app has got you covered.
 
 
 https://squad51-googlemeetclone.onrender.com
