@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { removeCookie } from "../Login";
 
 function DoorList() {
   const [data, setData] = useState([]);
@@ -42,11 +43,18 @@ const handleDelete = (id) => {
 };
 
 
+
+const handler=()=>{
+  removeCookie("username");
+  
+
+}
+
   return (
     <div>
       <nav style={{ background: "#333", padding: "10px", textAlign: "center" }}>
-        <button style={{ marginRight: "10px", background: "#4CAF50", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Sign In</button>
-        <button style={{ background: "#008CBA", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Sign Up</button>
+        <Link to='signup'><button style={{ marginRight: "10px", background: "#4CAF50", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Login</button></Link>
+        <button style={{ background: "#008CBA", color: "white", padding: "10px", border: "none", borderRadius: "5px" }} onClick={handler}>Log out</button>
       </nav>
 
       <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
