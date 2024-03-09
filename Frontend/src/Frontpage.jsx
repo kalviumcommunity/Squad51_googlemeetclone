@@ -11,7 +11,7 @@ function Frontpage() {
       borderRadius: '8px',
       margin: '10px',
   };
-
+  
   const textStyle = {
       margin: '5px 0',
   };

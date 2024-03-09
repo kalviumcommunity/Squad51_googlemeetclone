@@ -69,7 +69,7 @@ function Add() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("gg", formData.id)
-    axios.post("http://localhost:3000/adduser",{id : formData.id,name:formData.name,lastname:formData.lastname,Title:formData.Title,Link:formData.Link},{headers:{authorization:`Bearer ${token}`}})
+    axios.post("https://squad51-googlemeetclone.onrender.com/adduser",{id : formData.id,name:formData.name,lastname:formData.lastname,Title:formData.Title,Link:formData.Link},{headers:{authorization:`Bearer ${token}`}})
     .then(result=>console.log("res", result))
     .catch(err=>console.log(err))
 

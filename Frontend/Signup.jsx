@@ -24,7 +24,7 @@ function Signupp() {
     e.preventDefault();
     setButtonClicked(true); // Trigger button animation
     axios
-      .post('http://localhost:3000/signup', {
+      .post('https://squad51-googlemeetclone.onrender.com/signup', {
         username: username,
         password: password,
       })

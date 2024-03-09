@@ -24,8 +24,8 @@ function Login() {
     e.preventDefault();
     setButtonClicked(true); 
     axios
-      .post('http://localhost:3000/login', {
-        name: userName,
+      .post('https://squad51-googlemeetclone.onrender.com/login', {
+        username: userName,
         password: password,
       })
       .then((response) => {

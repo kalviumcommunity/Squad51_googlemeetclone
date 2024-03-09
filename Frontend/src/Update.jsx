@@ -65,7 +65,7 @@ function Update() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.patch(`http://localhost:3000/updateuser/${formData.id}`,{name:formData.name,lastname:formData.lastname,email:formData.email,Title:formData.Title,Link:formData.Link},{headers:{authorization:`Bearer ${token}`}})
+    axios.patch(`https://squad51-googlemeetclone.onrender.com/updateuser/${formData.id}`,{name:formData.name,lastname:formData.lastname,email:formData.email,Title:formData.Title,Link:formData.Link},{headers:{authorization:`Bearer ${token}`}})
     .then(result=>console.log(result))
     .catch(err=>console.log(err))
 
