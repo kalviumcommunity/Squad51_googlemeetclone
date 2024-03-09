@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { removeCookie } from "../Login";
+import WelcomeUser from "../Component/Welcome";
 
 function DoorList() {
   const [data, setData] = useState([]);
+  function getCookie(name) {
+    let cookieArray = document.cookie.split('; ');
+    let cookie = cookieArray.find((row) => row.startsWith(name + '='));
+    return cookie ? cookie.split('=')[1] : null;
+}
 
+  const token = getCookie('token')
   const fetchData = async () => {
     try {
       const header = new Headers({ "Access-Control-Allow-Origin": "*" });
 
-      const response = await fetch("http://localhost:3000/getallusers", { headers: header });
+      const response = await fetch("http://localhost:3000/getallusers", {headers:{authorization:`Bearer ${token}`}});
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -34,7 +40,7 @@ function DoorList() {
 
 
 const handleDelete = (id) => {
-  axios.delete(`http://localhost:3000/deleteuser/${id}`)
+  axios.delete(`http://localhost:3000/deleteuser/${id}`,{headers:{authorization:`Bearer ${token}`}})
     .then(res => {
       console.log(res);
       window.location.reload();
@@ -45,18 +51,17 @@ const handleDelete = (id) => {
 
 
 const handler=()=>{
-  removeCookie("username");
-  
-
+  alert('logout')
 }
 
   return (
     <div>
       <nav style={{ background: "#333", padding: "10px", textAlign: "center" }}>
-        <Link to='signup'><button style={{ marginRight: "10px", background: "#4CAF50", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Login</button></Link>
-        <button style={{ background: "#008CBA", color: "white", padding: "10px", border: "none", borderRadius: "5px" }} onClick={handler}>Log out</button>
+        <div>
+          <WelcomeUser></WelcomeUser>
+        </div>
       </nav>
-
+      {(data.length > 1) ?
       <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
         <thead>
           <tr>
@@ -84,6 +89,12 @@ const handler=()=>{
           ))}
         </tbody>
       </table>
+      :<div id='Body-content'>
+      <div id="login">
+      <h1>Please Login To Continue</h1>
+      </div>
+    </div>
+}
       <div style={{display:"flex", justifyContent:"center", marginTop:"2vw",marginLeft:'5px'}}>
         <Link to='/Add'><button style={{ padding:"10px",backgroundColor:"ligthblue",borderRadius:'5px',width:'10vw', border:"none",}}>Add</button></Link>
       </div>

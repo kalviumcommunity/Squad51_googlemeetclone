@@ -59,11 +59,17 @@ function Add() {
       [e.target.name]: e.target.value,
     });
   };
+  function getCookie(name) {
+    let cookieArray = document.cookie.split('; ');
+    let cookie = cookieArray.find((row) => row.startsWith(name + '='));
+    return cookie ? cookie.split('=')[1] : null;
+}
 
+  const token = getCookie('token')
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("gg", formData.id)
-    axios.post("http://localhost:3000/adduser",{id : formData.id,name:formData.name,lastname:formData.lastname,Title:formData.Title,Link:formData.Link})
+    axios.post("http://localhost:3000/adduser",{id : formData.id,name:formData.name,lastname:formData.lastname,Title:formData.Title,Link:formData.Link},{headers:{authorization:`Bearer ${token}`}})
     .then(result=>console.log("res", result))
     .catch(err=>console.log(err))
 
