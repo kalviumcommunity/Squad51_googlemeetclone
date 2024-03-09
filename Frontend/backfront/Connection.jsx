@@ -72,8 +72,13 @@ const handler=()=>{
           <WelcomeUser></WelcomeUser>
         </div>
       </nav>
+
       
-      <div>
+
+
+      {(data.length > 1) ?
+
+      <><div>
       <p> Created By :   </p> 
             <select name="createdBy" id="CreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
               <option value="All">All</option>
@@ -83,9 +88,6 @@ const handler=()=>{
               <option value="jhon">jhon</option>
             </select>
           </div>
-
-
-      {(data.length > 1) ?
       <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
         <thead>
           <tr>
@@ -113,7 +115,7 @@ const handler=()=>{
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></>
       :<div id='Body-content'>
       <div id="login">
       <h1>Please Login To Continue</h1>
