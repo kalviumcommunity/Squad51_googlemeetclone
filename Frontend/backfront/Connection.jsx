@@ -39,15 +39,18 @@ function DoorList() {
     setnewData(filteredData)
   }, [filter])
 
-  useEffect(() => {
-    console.log(newData, "nwe")
-    console.log(filter)
-
-  }, [newData])
   
   const handleUpdate = (userId) => {
     console.log("Update user with ID:", userId);
   };
+  const filteredData = data.filter((item)=>{
+    if(filter === "All"){
+      return item
+    }
+    else if(item["CreatedBy "].includes(filter)){
+      return item
+    }
+  })
 
 
 const handleDelete = (id) => {
@@ -100,7 +103,7 @@ const handler=()=>{
           </tr>
         </thead>
         <tbody>
-          { newData && newData.map((item) => (
+          { filteredData.map((item) => (
             <tr key={item.id} style={{ border: "1px solid #ddd" }}>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.id}</td>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.name}</td>
