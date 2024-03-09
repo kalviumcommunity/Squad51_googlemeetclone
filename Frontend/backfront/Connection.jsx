@@ -6,6 +6,7 @@ import WelcomeUser from "../Component/Welcome";
 function DoorList() {
   const [data, setData] = useState([]);
   const [filter,setFilter]=useState("All")
+  const [newData, setnewData] = useState(null)
   function getCookie(name) {
     let cookieArray = document.cookie.split('; ');
     let cookie = cookieArray.find((row) => row.startsWith(name + '='));
@@ -33,18 +34,20 @@ function DoorList() {
   useEffect(() => {
     fetchData();
   }, []);
-  const filteredData = data.filter((item)=>{
-    if(filter === "All"){
-      return item
-    }
-    else if(item.CreatedBy.includes(filter)){
-      return item
-    }
-  })
+  useEffect(() => {
+    const filteredData = data.filter(item => filter === "All" ? true : item["CreatedBy "] == filter )
+    setnewData(filteredData)
+  }, [filter])
+
+  useEffect(() => {
+    console.log(newData, "nwe")
+    console.log(filter)
+
+  }, [newData])
+  
   const handleUpdate = (userId) => {
     console.log("Update user with ID:", userId);
   };
-
 
 
 const handleDelete = (id) => {
@@ -69,6 +72,7 @@ const handler=()=>{
           <WelcomeUser></WelcomeUser>
         </div>
       </nav>
+      
       <div>
       <p> Created By :   </p> 
             <select name="createdBy" id="CreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
@@ -79,6 +83,7 @@ const handler=()=>{
               <option value="jhon">jhon</option>
             </select>
           </div>
+
 
       {(data.length > 1) ?
       <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
@@ -93,12 +98,13 @@ const handler=()=>{
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((item) => (
+          { newData && newData.map((item) => (
             <tr key={item.id} style={{ border: "1px solid #ddd" }}>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.id}</td>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.name}</td>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.lastname}</td>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.Title}</td>
+              <td>{item["CreatedBy "]}</td>
               <td style={{ padding: "8px", textAlign: "center" }}><a target="_blank" rel="noopener noreferrer" href={item.Link}>{item.Link}</a></td>
               <td style={{ padding: "8px", textAlign: "center" }}>
                 <Link to={`/update/${item._id}`}><button style={{ marginRight: '5px' }}>Update</button></Link>

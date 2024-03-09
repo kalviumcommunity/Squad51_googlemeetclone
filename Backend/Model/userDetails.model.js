@@ -7,7 +7,8 @@ const userDetails=new schema({
     lastname:{type:String},
     email : {type:String, default : "gmail.com"},
     Title:{type:String},
-    Link:{type:String}
+    Link:{type:String},
+    CreatedBy:{type:String}
 },{
         timestamps: true
     });
