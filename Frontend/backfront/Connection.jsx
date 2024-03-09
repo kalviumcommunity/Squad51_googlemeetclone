@@ -5,6 +5,7 @@ import WelcomeUser from "../Component/Welcome";
 
 function DoorList() {
   const [data, setData] = useState([]);
+  const [filter,setFilter]=useState("All")
   function getCookie(name) {
     let cookieArray = document.cookie.split('; ');
     let cookie = cookieArray.find((row) => row.startsWith(name + '='));
@@ -16,7 +17,7 @@ function DoorList() {
     try {
       const header = new Headers({ "Access-Control-Allow-Origin": "*" });
 
-      const response = await fetch("http://localhost:3000/getallusers", {headers:{authorization:`Bearer ${token}`}});
+      const response = await fetch("https://squad51-googlemeetclone.onrender.com/getallusers", {headers:{authorization:`Bearer ${token}`}});
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -32,7 +33,14 @@ function DoorList() {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const filteredData = data.filter((item)=>{
+    if(filter === "All"){
+      return item
+    }
+    else if(item.CreatedBy.includes(filter)){
+      return item
+    }
+  })
   const handleUpdate = (userId) => {
     console.log("Update user with ID:", userId);
   };
@@ -40,7 +48,7 @@ function DoorList() {
 
 
 const handleDelete = (id) => {
-  axios.delete(`http://localhost:3000/deleteuser/${id}`,{headers:{authorization:`Bearer ${token}`}})
+  axios.delete(`https://squad51-googlemeetclone.onrender.com/deleteuser/${id}`,{headers:{authorization:`Bearer ${token}`}})
     .then(res => {
       console.log(res);
       window.location.reload();
@@ -61,6 +69,17 @@ const handler=()=>{
           <WelcomeUser></WelcomeUser>
         </div>
       </nav>
+      <div>
+      <p> Created By :   </p> 
+            <select name="createdBy" id="CreatedBy" onChange={(e)=>{setFilter(e.target.value)}}>
+              <option value="All">All</option>
+              <option value="venkat">venkat</option>
+              <option value="raman">raman</option>
+              <option value="sudhan">sudhan</option>
+              <option value="jhon">jhon</option>
+            </select>
+          </div>
+
       {(data.length > 1) ?
       <table style={{ borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
         <thead>
@@ -74,7 +93,7 @@ const handler=()=>{
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
+          {filteredData.map((item) => (
             <tr key={item.id} style={{ border: "1px solid #ddd" }}>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.id}</td>
               <td style={{ padding: "8px", textAlign: "center" }}>{item.name}</td>
