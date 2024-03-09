@@ -30,7 +30,8 @@ const schema=joi.object({
     email:joi.string(),
     id:joi.number(), 
     Title:joi.string(), 
-    Link:joi.string()
+    Link:joi.string(),
+    CreatedBy:joi.string()
 })
 
 getRouter.get('/getallusers',authenticateToken, async (req, res) => {
@@ -61,10 +62,10 @@ postRouter.post('/adduser',authenticateToken, async (req, res) => {
     const {error,value}=schema.validate(req.body,{abortEarly:false})
     try {
         if(!error){
-        const { name, lastname, id, Title, email, Link } = req.body;
+        const { name, lastname, id, Title, email, Link,CreatedBy } = req.body;
         console.log("id", id, "name", name)
 
-        const user = await UserDetails.create({ name, lastname, email, id, Title, Link });
+        const user = await UserDetails.create({ name, lastname, email, id, Title, Link,CreatedBy });
         res.status(201).json(user);
         }
         else {
@@ -87,8 +88,8 @@ putRouter.patch('/updateuser/:id',authenticateToken, async (req, res) => {
         if(!error){
         const {id} = req.params;
         const filter ={"id":Number(id)}
-        let{name, lastname, email, Meetingid, Title, Link } = req.body;
-        const userDetails = await UserDetails.findOneAndUpdate(filter,{name, lastname, email, id, Meetingid, Title, Link });
+        let{name, lastname, email, Meetingid, Title, Link,CreatedBy } = req.body;
+        const userDetails = await UserDetails.findOneAndUpdate(filter,{name, lastname, email, id, Meetingid, Title, Link,CreatedBy });
         res.status(200).json(userDetails);
         }else {
             return res.status(400).send({

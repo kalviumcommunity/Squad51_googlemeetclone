@@ -36,10 +36,7 @@ function DoorList() {
   }, []);
   useEffect(() => {
     const filteredData = data.filter(item => filter === "All" ? true : item["CreatedBy "] == filter )
-
-    // console.log(filter)
     setnewData(filteredData)
-    // data.map(item => console.log(item["CreatedBy "]))
   }, [filter])
 
   useEffect(() => {
@@ -51,7 +48,6 @@ function DoorList() {
   const handleUpdate = (userId) => {
     console.log("Update user with ID:", userId);
   };
-
 
 
 const handleDelete = (id) => {
