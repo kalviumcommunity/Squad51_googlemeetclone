@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Logout() {
   const navigate = useNavigate();
@@ -23,35 +23,46 @@ function Logout() {
   };
 
   return (
-    <div id='Body' style={{ background: '#f0f0f0', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <div id='Navbar' style={{ background: '#333', color: 'white', padding: '10px', display: 'flex', justifyContent: 'space-between' }}>
-        <div id='Navbar-left'>
-          <Link to='/' style={{ textDecoration: 'none' }}>
-            <h1 style={{ margin: 0 }}>gmeetlibrary</h1>
-          </Link>
-        </div>
-        <div></div>
-      </div>
-      <div id='Body-content' style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        <h1 style={{ color: '#333', marginBottom: '20px' }}>Log Out</h1>
-        <button
-          onClick={signOut}
-          style={{
-            background: '#e44d26',
-            color: 'white',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            transition: 'background 0.3s',
-          }}
-        >
-          Log Out
-        </button>
-      </div>
+    <div style={{ background: 'white', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxShadow: 'rgba(0, 0, 3, 0.35) 0px 5px 15px' }}>
+      <h1 style={{ color: 'red', marginBottom: '20px', fontSize: '2rem' }}>Logout</h1>
+      <button
+        onClick={signOut}
+        style={{
+          background: 'limegreen',
+          color: 'white',
+          padding: '12px 24px',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontSize: '1rem',
+          transition: 'background 0.3s, transform 0.3s',
+          animation: 'bounce 0.5s ease-out',
+        }}
+        onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+        onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        Log Out
+      </button>
+      <style>
+        {`
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0);
+            }
+            40% {
+              transform: translateY(-10px);
+            }
+            60% {
+              transform: translateY(-5px);
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }
 
 export default Logout;
+
+
+

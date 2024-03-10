@@ -5,7 +5,7 @@ import axios from 'axios';
 function Login() {
   const [userName, setUserName] = useState(getCookie('username'));
   const [password, setPassword] = useState(getCookie('password'));
-  const [buttonClicked, setButtonClicked] = useState(false); 
+  const [buttonClicked, setButtonClicked] = useState(false);
   const navigate = useNavigate();
 
   function getCookie(name) {
@@ -22,7 +22,7 @@ function Login() {
 
   const submit = (e) => {
     e.preventDefault();
-    setButtonClicked(true); 
+    setButtonClicked(true);
     axios
       .post('https://squad51-googlemeetclone.onrender.com/login', {
         username: userName,
@@ -40,10 +40,10 @@ function Login() {
 
   return (
     <>
-      <div id='Body'>
+      <div id='Body' style={{ background: 'white' }}>
         <div id='Navbar'>
-          <div id='Navbar-left' style={{display:"flex",justifyContent:"center"}}>
-            <h1 style={{fontFamily:"cursive", textAlign:"center"}}>Login</h1>
+          <div id='Navbar-left' style={{ display: 'flex', justifyContent: 'center' }}>
+            <h1 style={{ fontFamily: 'cursive', textAlign: 'center',color:'red' }}>Login</h1>
           </div>
         </div>
         <div
@@ -64,11 +64,12 @@ function Login() {
               borderRadius: '8px',
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
               textAlign: 'center',
+              boxShadow: '0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3)'
             }}
           >
-            <form onSubmit={submit}>
+            <form onSubmit={submit} >
               <div className='space-around' style={{ marginBottom: '20px' }}>
-                <label>User Name : </label>
+                <label style={{fontFamily:'cursive'}}>User Name:</label>
                 <input
                   type='text'
                   onChange={(e) => {
@@ -78,7 +79,7 @@ function Login() {
                 />
               </div>
               <div className='space-around' style={{ marginBottom: '20px' }}>
-                <label>Password : </label>
+                <label style={{fontFamily:'cursive'}}>Password:</label>
                 <input
                   type='password'
                   name='password'
@@ -102,15 +103,16 @@ function Login() {
                   fontSize: '18px',
                   position: 'relative',
                   overflow: 'hidden',
+                  boxShadow: buttonClicked ? '0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5)' : 'none',
                   animation: buttonClicked ? 'fadeIn 0.5s' : '',
                 }}
               >
                 {buttonClicked ? 'Logging In...' : 'Log In'}
               </button>
             </form>
-            <button style={{marginTop:"2vw", padding:"15px",width:"8vw"}}><Link to='/signup' style={{ textDecoration: 'none', color: 'blue', marginTop: '20px', fontSize: '16px' }}>
-              SignUp
-            </Link></button>
+            <button style={{ marginTop: '1em', padding: '0.6em 1.0em', width: '7em', fontSize: '1.2em', background: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', boxShadow: '0 0 10px rgba(0, 0, 255, 0.8), 0 0 20px rgba(0, 0, 255, 0.5)' }}>
+              <Link to='/signup' style={{ textDecoration: 'none', color: 'inherit' }}>Sign Up</Link>
+            </button>
           </div>
         </div>
       </div>
@@ -119,3 +121,7 @@ function Login() {
 }
 
 export default Login;
+
+
+
+
