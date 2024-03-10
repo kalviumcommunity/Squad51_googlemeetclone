@@ -8,12 +8,29 @@ function WelcomeUser() {
     }
     if(getCookie('username')!=undefined) {return(
         <>
-        <h3>Welcome {getCookie('username')}</h3>
-        <Link to="/logout"><button id='Navbar-button'>Logout</button></Link>
+        <h3 style={{fontFamily:'cursive',color:'white',}}>Welcome {getCookie('username')}</h3>
+        <Link to="/logout"><button style={{backgroundColor:'limegreen',color:'white',padding:'8px'}} id='Navbar-button'>Logout</button></Link>
         </>)}
     
       else{return(
-      <Link to="/login"><button id='Navbar-button'>Login</button></Link>)}}
+        <Link to="/login">
+        <button
+          style={{
+            backgroundColor: 'limegreen',
+            color: 'white',
+            padding: '12px', 
+            width: '150px', 
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius:'5px',
+            transition: 'background-color 0.3s ease', 
+          }}
+          id='Navbar-button'
+        >
+          Login
+        </button>
+      </Link>
+      )}}
 
 
 
