@@ -5,7 +5,7 @@ const userDetails=new schema({
     id:{type:Number},
     name:{type:String},
     lastname:{type:String},
-    email : {type:String, default : "gmail.com"},
+    email : {type:String},
     Title:{type:String},
     Link:{type:String},
     CreatedBy:{type:String}
