@@ -100,7 +100,7 @@ putRouter.patch('/updateuser/:id',authenticateToken, async (req, res) => {
     }catch(err){
         console.log(err);
         return res.status(500).send({
-            message: `Internal server error : ${err}`
+            message: err
         })
     }
 });
